@@ -3,8 +3,8 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import dbutil.SQLHelper;
 import entity.User;
+import util.SQLHelper;
 
 public class UserDao {
 	public List<User> queryAllUsers(){

@@ -14,7 +14,7 @@
 		String ip=request.getRemoteAddr();
 		session.setAttribute("ip", ip);
 		%>
-	     <h1>欢迎使用线下问卷系统！${uname}</h1>
+	     <h1>欢迎使用线上问卷系统！${uname}</h1>
 	     <p>${ip}</p>
 	</body>
 </html>
