@@ -86,4 +86,38 @@ public class SQLHelper {
 			}
 			return list;
 		}
+		public static List<Object[]> executeQueryByParamsAsList(String sql,Object... params){
+			List<Object[]> list=new ArrayList<Object[]>();
+			ResultSet rs=null;
+			try {
+				conn = DriverManager.getConnection(url, user, pwd);
+				PreparedStatement pcmd=conn.prepareStatement(sql);
+				for(int i=0;i<params.length;i++) {
+					Object param=params[i];
+					if(param instanceof Integer)
+						pcmd.setInt(i+1,new Integer(param.toString()));
+					else if(param instanceof Double)
+						pcmd.setDouble(i+1, new Double(param.toString()));
+					else if(param instanceof Float)
+						pcmd.setFloat(i+1, new Float(param.toString()));
+					else if(param instanceof String)
+						pcmd.setString(i+1, param.toString());
+					else pcmd.setObject(i+1, param);
+				}
+				rs=pcmd.executeQuery();
+				int cols=rs.getMetaData().getColumnCount();
+				while(rs.next()) {
+					//每一行记录就是一个Object数组
+					Object[] arr=new Object[cols];
+					for(int i=0;i<arr.length;i++) {
+						arr[i]=rs.getObject(i+1);
+					}
+					list.add(arr);  //将结果集的每一行都加入list
+				}
+				conn.close();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return list;
+		}
 }

@@ -8,10 +8,10 @@ public class Invest {
 	private String content;
 	private int state;
 	private int user_id;
-	private Timestamp created;
+	private String created;
 	public Invest() {
 	} 
-	public Invest(int id, String title, String content, int state, int user_id, Timestamp created) {
+	public Invest(int id, String title, String content, int state, int user_id, String created) {
 		this.id = id;
 		this.title = title;
 		this.content = content;
@@ -49,11 +49,16 @@ public class Invest {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	public Timestamp getCreated() {
+	public String getCreated() {
 		return created;
 	}
-	public void setCreated(Timestamp created) {
+	public void setCreated(String created) {
 		this.created = created;
+	}
+	@Override
+	public String toString() {
+		return "id=" + id + ", title=" + title + ", content=" + content + ", state=" + state + ", user_id="
+				+ user_id + ", created=" + created + "]";
 	}  
 	
 }

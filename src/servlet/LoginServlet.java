@@ -26,7 +26,8 @@ public class LoginServlet extends HttpServlet {
 					if(pwd.equals(u.getPwd())) {
 						//登录成功
 						request.getSession().setAttribute("uname", uname);
-						request.getSession().setAttribute("error","");
+						setId(uname, request);
+						request.getSession().removeAttribute("error");
 						response.sendRedirect("index.jsp");
 						return;
 					}
@@ -42,6 +43,7 @@ public class LoginServlet extends HttpServlet {
 			//数据库中没有对应的用户名，自动注册
 			userdao.addUser(uname, pwd);
 			request.getSession().setAttribute("uname", uname);
+			setId(uname, request);
 			request.getSession().removeAttribute("error");
 			response.sendRedirect("index.jsp");
 		}
@@ -55,5 +57,9 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+	public void setId(String uname,HttpServletRequest request) {
+		UserDao dao=new UserDao();
+		int id=dao.getIdByUname(uname);
+		request.getSession().setAttribute("user_id", id);
+	}
 }

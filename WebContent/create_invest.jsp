@@ -11,7 +11,7 @@
     <!-- 给网页加图标 -->
     <link rel="icon" href="">
 
-    <title>在线问卷系统登录</title>
+    <title>新建问卷</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -26,18 +26,32 @@
   </head>
 
   <body>
-
+		<%
+		//如果没有登录，就转到登录界面
+		if(session.getAttribute("uname")==null){
+			response.sendRedirect("login.jsp");
+		}
+		%>
     <div class="container">
 
       <form class="form-signin" action="Login" method=get>
-        <h2 class="form-signin-heading">在线问卷系统登录</h2>
-        <p align="center" color=red>${error}</p>
-        <input type="text"  class="form-control" name=uname placeholder="用户名" required autofocus>
-        <input type="password"  class="form-control" name=pwd placeholder="密码" required>
+        <h2 class="form-signin-heading">在线设计问卷</h2>
+        
+        <input type="text"  class="form-control" name=title placeholder="问卷标题" required autofocus>
+		
+        <input type="text"  class="form-control" name=content placeholder="问卷描述" required>
         <br>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">登录/注册</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">立即创建</button>
       </form>
-
+	<form class="form-signin"  method="post" action="UploadServlet" enctype="multipart/form-data">
+	  <h2 class="form-signin-heading">或者导入Excel问卷</h2>
+	  	<input class="file" type="file" name="uploadFile">
+	  <br />
+	  <a class="btn btn-success" href="Example.PNG" role="button" >excel示例</a> 
+	  <br />
+	  <br />
+			<button class="btn btn-lg btn-primary btn-block" type="submit">导入问卷</button>
+	</form>
     </div> <!-- /container -->
 
   </body>

@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import dao.InvestDao;
+import util.ExcelReader;
  
 
 /**
@@ -92,8 +95,9 @@ public class UploadServlet extends HttpServlet {
                             //System.out.println(filePath);
                             // 保存文件到硬盘
                             item.write(storeFile);
-                            request.setAttribute("message",
-                                "文件上传成功!");
+                            request.setAttribute("message", "文件上传成功"+"路径："+filePath);
+                            response.sendRedirect("Excel?opt=read&filePath="+fileName);
+                            return;
                         }
                         else {
                         	request.setAttribute("message", "上传的文件不是Excel文件，请确保上传文件扩展名为.xlsx");

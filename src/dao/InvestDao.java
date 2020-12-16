@@ -1,7 +1,9 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import entity.Invest;
 import util.SQLHelper;
 
 public class InvestDao {
@@ -21,4 +23,20 @@ public class InvestDao {
 		String sql="delete from invest where id=?";
 		return SQLHelper.executeUpdateByParams(sql, invest_id);
 	}
+	 public List<Invest> queryAllInvests(){
+    	 List<Invest> list=new ArrayList<Invest>();
+    	 String sql="select * from invest";
+    	 List<Object[]> invarr=SQLHelper.executeQueryAsList(sql);
+    	 for(Object[] arr:invarr) {
+    		 Invest inv=new Invest();
+    		 inv.setId(Integer.valueOf(arr[0].toString()));
+    		 inv.setTitle(arr[1].toString());
+    		 inv.setContent(arr[2].toString());
+    		 inv.setState(Integer.valueOf(arr[3].toString()));
+    		 inv.setUser_id(Integer.valueOf(arr[4].toString()));
+    		 inv.setCreated(arr[5].toString().substring(0,16));
+    		 list.add(inv);
+    	 }
+    	 return list;
+    }
 }

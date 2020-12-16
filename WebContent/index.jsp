@@ -1,20 +1,118 @@
-<%@ page language="java"  pageEncoding="utf-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
-	<head>
-	   <title>欢迎使用线上问卷系统！</title>
-	 </head>
-	<body>
-	<%
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+	<style>
+		.fixed-table-body{
+		overflow:visible !important;
+		}
+	</style>
+    <title>我的问卷</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="https://v3.bootcss.com/examples/dashboard/dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+		<%
 		//如果没有登录，就转到登录界面
 		if(session.getAttribute("uname")==null){
 			response.sendRedirect("login.jsp");
 		}
-	
-		String ip=request.getRemoteAddr();
-		session.setAttribute("ip", ip);
 		%>
-	     <h1>欢迎使用线上问卷系统！${uname}</h1>
-	     <p>${ip}</p>
-	</body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">在线问卷系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${uname}</a>
+			
+			<ul class="dropdown-menu">
+								<li><a href="Logout">退出登录</a></li>
+								</li>
+			</ul>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a  href="create_invest.jsp">新建问卷 <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">问卷列表</h1>
+
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>title</th>
+                  <th>创建时间</th>
+                </tr>
+              </thead>
+              <tbody>
+				<tr>
+				  <td>1</td>
+				  <td>上海市市民对垃圾分类知识认识情况调查</td>
+				  <td>2020-12-16 16:41:22</td>
+				  <td>
+					 <a class="btn btn-primary" href="#" role="button" >设计</a>
+				  </td>
+				  <td>
+				  	<a class="btn btn-success" href="#" role="button" >发布</a>
+				  </td>
+				  <td>
+					 <a class="btn btn-danger" href="#" role="button" >删除</a>
+				  </td>
+				  <td>
+				              <ul class="nav navbar-nav">
+				<li class="dropdown">
+				                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分析&下载 <span class="caret"></span></a>
+				                  <ul class="dropdown-menu">
+				                    <li><a href="#">统计分析</a></li>
+									<li><a href="#">下载分析报告</a></li>
+				                    <li><a href="#">下载问卷</a></li>
+				                    <li><a href="#">导出数据</a></li>				                    
+				                  </ul>
+				                </li>
+								 </ul>
+				</td>
+				</tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
 </html>

@@ -26,4 +26,12 @@ public class UserDao {
 		String sql="insert into user(user_name,pwd) values(?,?)";
 		return SQLHelper.executeUpdateByParams(sql, user_name,pwd);
 	}
+	//根据用户名查找id
+	public int getIdByUname(String user_name) {
+		String sql="select id from user where user_name=?";
+		List<Object[]> list=SQLHelper.executeQueryByParamsAsList(sql, user_name);
+		if(list.size()==0)
+			return 0;
+		else return Integer.valueOf(list.get(0)[0].toString());
+	}
 }
