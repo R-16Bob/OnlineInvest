@@ -34,7 +34,7 @@ public class UploadServlet extends HttpServlet {
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
- 
+    private static String filePath;
     /**
      * 上传数据及保存文件
      */
@@ -68,7 +68,7 @@ public class UploadServlet extends HttpServlet {
         upload.setHeaderEncoding("UTF-8"); 
 
         // 构造临时路径来存储上传的文件
-        String uploadPath = "D:/invest" + File.separator + UPLOAD_DIRECTORY;
+        String uploadPath = "D:\\invest" + File.separator + UPLOAD_DIRECTORY;
        
          
         // 如果目录不存在则创建
@@ -90,14 +90,12 @@ public class UploadServlet extends HttpServlet {
                         String fileName = new File(item.getName()).getName();
                         //判断是否为Excel文件
                         if(fileName.substring(fileName.length()-5).equals(".xlsx")) {
-                        	String filePath = uploadPath + File.separator + fileName;
+                        	filePath = uploadPath + File.separator + fileName;
                             File storeFile = new File(filePath);
                             //System.out.println(filePath);
                             // 保存文件到硬盘
                             item.write(storeFile);
-                            request.setAttribute("message", "文件上传成功"+"路径："+filePath);
-                            response.sendRedirect("Excel?opt=read&filePath="+fileName);
-                            return;
+                            request.setAttribute("message", "文件上传成功,"+"路径："+filePath);
                         }
                         else {
                         	request.setAttribute("message", "上传的文件不是Excel文件，请确保上传文件扩展名为.xlsx");
@@ -109,6 +107,16 @@ public class UploadServlet extends HttpServlet {
             request.setAttribute("message",
                     "错误信息: " + ex.getMessage());
         }
+        ExcelReader er=new ExcelReader();
+		InvestDao investDao =new InvestDao();
+		//需要文件名和user_id{
+		int id=Integer.valueOf(request.getSession().getAttribute("user_id").toString());
+		if(!er.read(filePath, id)) {
+			//创建问卷失败，删除问卷
+			investDao.deleteInvestById(investDao.getLastInvest_id());
+			request.setAttribute("message", "导入问卷失败，请检查文件格式");
+		}
+		else request.setAttribute("message", "问卷导入成功！");
         // 跳转到 message.jsp
         getServletContext().getRequestDispatcher("/message.jsp").forward(
                 request, response);
