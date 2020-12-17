@@ -35,6 +35,7 @@ public class UploadServlet extends HttpServlet {
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
     private static String filePath;
+    private static boolean up_success;
     /**
      * 上传数据及保存文件
      */
@@ -48,7 +49,7 @@ public class UploadServlet extends HttpServlet {
             writer.flush();
             return;
         }
- 
+        up_success=false;
         // 配置上传参数
         DiskFileItemFactory factory = new DiskFileItemFactory();
         // 设置内存临界值 - 超过后将产生临时文件并存储于临时目录中
@@ -93,8 +94,9 @@ public class UploadServlet extends HttpServlet {
                         	filePath = uploadPath + File.separator + fileName;
                             File storeFile = new File(filePath);
                             //System.out.println(filePath);
-                            // 保存文件到硬盘
+                            // 保存文件到硬盘             
                             item.write(storeFile);
+                            up_success=true;
                             request.setAttribute("message", "文件上传成功,"+"路径："+filePath);
                         }
                         else {
@@ -109,11 +111,13 @@ public class UploadServlet extends HttpServlet {
         }
         ExcelReader er=new ExcelReader();
 		InvestDao investDao =new InvestDao();
-		//需要文件名和user_id{
+		//需要文件名和user_id
 		int id=Integer.valueOf(request.getSession().getAttribute("user_id").toString());
 		if(!er.read(filePath, id)) {
-			//创建问卷失败，删除问卷
-			investDao.deleteInvestById(investDao.getLastInvest_id());
+			//创建问卷失败，删除问卷,只有上传成功才会创建问卷，才能删除
+			if(up_success) {
+				investDao.deleteInvestById(investDao.getLastInvest_id());
+			}
 			request.setAttribute("message", "导入问卷失败，请检查文件格式");
 		}
 		else request.setAttribute("message", "问卷导入成功！");

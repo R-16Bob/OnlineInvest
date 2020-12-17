@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 						request.getSession().setAttribute("uname", uname);
 						setId(uname, request);
 						request.getSession().removeAttribute("error");
-						response.sendRedirect("index.jsp");
+						response.sendRedirect("Invest?opt=queryAll");
 						return;
 					}
 					else {
@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 			request.getSession().setAttribute("uname", uname);
 			setId(uname, request);
 			request.getSession().removeAttribute("error");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("Invest?opt=queryAll");
 		}
 		else{
 			//用户名或密码没填,登录不成功

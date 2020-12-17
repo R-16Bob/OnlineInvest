@@ -23,10 +23,11 @@ public class InvestDao {
 		String sql="delete from invest where id=?";
 		return SQLHelper.executeUpdateByParams(sql, invest_id);
 	}
-	 public List<Invest> queryAllInvests(){
+	//查询某个用户拥有的所有问卷 
+	public List<Invest> queryAllInvestsByUser_id(int id){
     	 List<Invest> list=new ArrayList<Invest>();
-    	 String sql="select * from invest";
-    	 List<Object[]> invarr=SQLHelper.executeQueryAsList(sql);
+    	 String sql="select * from invest where user_id=?";
+    	 List<Object[]> invarr=SQLHelper.executeQueryByParamsAsList(sql, id);
     	 for(Object[] arr:invarr) {
     		 Invest inv=new Invest();
     		 inv.setId(Integer.valueOf(arr[0].toString()));

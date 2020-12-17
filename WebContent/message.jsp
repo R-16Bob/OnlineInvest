@@ -36,6 +36,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
+                <li><a href="Invest?opt=queryAll">我的问卷</a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${uname}</a>
     			
     			<ul class="dropdown-menu">
@@ -52,7 +53,7 @@
       <div class="starter-template">
         <h1>结果</h1>
         <p class="lead">${message}</p>
-        <a class="btn btn-success" href="index.jsp" role="button" >回到我的问卷</a>
+        <a class="btn btn-success" href="Invest?opt=queryAll" role="button" >回到我的问卷</a>
       </div>
 
     </div><!-- /.container -->

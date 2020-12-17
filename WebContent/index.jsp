@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -42,6 +43,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="Invest?opt=queryAll">我的问卷</a></li>
             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${uname}</a>
 			
 			<ul class="dropdown-menu">
@@ -74,10 +76,11 @@
                 </tr>
               </thead>
               <tbody>
+				<c:forEach var="inv" items="${invlist}">
 				<tr>
-				  <td>1</td>
-				  <td>上海市市民对垃圾分类知识认识情况调查</td>
-				  <td>2020-12-16 16:41:22</td>
+				  <td>${inv.id}</td>
+				  <td>${inv.title}</td>
+				  <td>${inv.created}</td>
 				  <td>
 					 <a class="btn btn-primary" href="#" role="button" >设计</a>
 				  </td>
@@ -85,7 +88,7 @@
 				  	<a class="btn btn-success" href="#" role="button" >发布</a>
 				  </td>
 				  <td>
-					 <a class="btn btn-danger" href="#" role="button" >删除</a>
+					 <a class="btn btn-danger" href="Invest?opt=delete&invest_id=${inv.id}" role="button" >删除</a>
 				  </td>
 				  <td>
 				              <ul class="nav navbar-nav">
@@ -101,6 +104,7 @@
 								 </ul>
 				</td>
 				</tr>
+				</c:forEach>
               </tbody>
             </table>
           </div>
