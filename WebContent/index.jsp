@@ -82,7 +82,7 @@
 				  <td>${inv.title}</td>
 				  <td>${inv.created}</td>
 				  <td>
-					 <a class="btn btn-primary" href="#" role="button" >设计</a>
+					 <a class="btn btn-primary" href="Invest?opt=edit&invest_id=${inv.id}" role="button" >设计</a>
 				  </td>
 				  <td>
 				  	<a class="btn btn-success" href="#" role="button" >发布</a>

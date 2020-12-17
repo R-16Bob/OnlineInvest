@@ -19,16 +19,21 @@ public class InvestServlet extends HttpServlet {
 		int id=Integer.valueOf(request.getSession().getAttribute("user_id").toString());		
 		String opt=request.getParameter("opt");
 		InvestDao investDao = new InvestDao();
+		int invest_id;
 		switch(opt) {
 		case "queryAll":
 			request.getSession().setAttribute("invlist", investDao.queryAllInvestsByUser_id(id));
 			response.sendRedirect("index.jsp");
 			break;
 		case "delete":
-			int invest_id=Integer.valueOf(request.getParameter("invest_id"));
+			invest_id=Integer.valueOf(request.getParameter("invest_id"));
 			investDao.deleteInvestById(invest_id);
 			response.sendRedirect("Invest?opt=queryAll");
 			break;
+		case "edit":
+			invest_id=Integer.valueOf(request.getParameter("invest_id"));
+			request.getSession().setAttribute("inv", investDao.queryInvestByInv_id(invest_id));
+			response.sendRedirect("edit_invest.jsp");
 		}
 	}
 

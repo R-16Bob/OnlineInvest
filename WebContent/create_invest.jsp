@@ -34,7 +34,7 @@
 		%>
     <div class="container">
 
-      <form class="form-signin" action="Login" method=get>
+      <form class="form-signin" action="Create_invest" method=post>
         <h2 class="form-signin-heading">在线设计问卷</h2>
         
         <input type="text"  class="form-control" name=title placeholder="问卷标题" required autofocus>
