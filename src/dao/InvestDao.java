@@ -59,4 +59,9 @@ public class InvestDao {
 		 return inv;
    	 }
 	}
+	//修改title
+	public int updateTitle(int id,String title) {
+		String sql="update ";
+		return 
+	}
 }

@@ -51,15 +51,15 @@
     <div class="container">
 
       <div class="starter-template">
-        <form role="form" method="post" action="?">
+        <form role="form" method="post" action="EditInvest">
         	<div class="form-group">
-        		<label for="name">${inv.title}</label>
-        		<input type="text" class="form-control" id="name" 
-        			   placeholder="新的标题">
+        		<label for="name">新的题目</label>
+        		<input type="text" class="form-control" id="title" 
+        			   value="${inv.title}">
         			   <br>
-					   <label for="name">${inv.content}</label>
-					   <input type="text" class="form-control" id="name" 
-					   	   placeholder="新的描述">
+					   <label for="name">新的描述</label>
+					   <input type="text" class="form-control" id="inv_content" 
+					   	   value="${inv.content}">
         	</div>
         	<button type="submit" class="btn btn-default">保存</button>
         </form>

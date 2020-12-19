@@ -85,7 +85,7 @@
 					 <a class="btn btn-primary" href="Invest?opt=edit&invest_id=${inv.id}" role="button" >设计</a>
 				  </td>
 				  <td>
-				  	<a class="btn btn-success" href="#" role="button" >发布</a>
+				  	<a class="btn btn-success" href="ShowInvest?invest_id=${inv.id}" role="button" >发布</a>
 				  </td>
 				  <td>
 					 <a class="btn btn-danger" href="Invest?opt=delete&invest_id=${inv.id}" role="button" >删除</a>
