@@ -29,7 +29,7 @@
 
     <div class="container">
 
-      <form class="form-signin" action="Login" method=get>
+      <form class="form-signin" action="Login" method=post>
         <h2 class="form-signin-heading">在线问卷系统登录</h2>
         <p align="center" color=red>${error}</p>
         <input type="text"  class="form-control" name=uname placeholder="用户名" required autofocus>

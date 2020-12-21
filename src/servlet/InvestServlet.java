@@ -33,7 +33,7 @@ public class InvestServlet extends HttpServlet {
 		case "edit":
 			invest_id=Integer.valueOf(request.getParameter("invest_id"));
 			request.getSession().setAttribute("inv", investDao.queryInvestByInv_id(invest_id));
-			response.sendRedirect("edit_invest.jsp");
+			response.sendRedirect("EditInvest?opt=queryAll");
 		}
 	}
 

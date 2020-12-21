@@ -61,7 +61,12 @@ public class InvestDao {
 	}
 	//修改title
 	public int updateTitle(int id,String title) {
-		String sql="update ";
-		return 
+		String sql="update invest set title=? where id=?";
+		return SQLHelper.executeUpdateByParams(sql, title,id);
+	}
+	//修改content
+	public int updateContent(int id,String content) {
+		String sql="update invest set content=? where id=?";
+		return SQLHelper.executeUpdateByParams(sql, content,id);
 	}
 }

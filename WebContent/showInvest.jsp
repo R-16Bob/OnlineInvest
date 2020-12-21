@@ -39,7 +39,7 @@
          <c:if test="${c.q_id==q.q_id}">
          <div class="radio">
              <label>
-                 <input type="radio" name="optionsRadios"  value="option1" checked> ${c.c_content}
+                 <input type="radio" name="q${c.q_id}"  value="${c.c_content}" > ${c.c_content}
              </label>
          </div>
          </c:if>
@@ -49,13 +49,13 @@
          <c:forEach var="c" items="${cvlist}">
          <c:if test="${c.q_id==q.q_id}">
          <div class="checkbox">
-             <label><input type="checkbox" name="" value="">${c.c_content}</label>
+             <label><input type="checkbox" name="q${c.q_id}" value="${c.c_content}">${c.c_content}</label>
          </div>
          </c:if>
          </c:forEach>
          </c:if>
          <c:if test="${q.type!=1&&q.type!=2}">
-         <input type="text" class="form-control" name="">
+         <input type="text" class="form-control" name="q${q.q_id}">
          </c:if>
          </div>
          <br>

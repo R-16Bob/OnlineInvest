@@ -53,19 +53,85 @@
       <div class="starter-template">
         <form role="form" method="post" action="EditInvest">
         	<div class="form-group">
-        		<label for="name">新的题目</label>
-        		<input type="text" class="form-control" id="title" 
+        		<input type="hidden" name="opt" value="editInv">
+        		<label for="name">新的标题</label>
+        		<input type="text" class="form-control" name="title" 
         			   value="${inv.title}">
         			   <br>
 					   <label for="name">新的描述</label>
-					   <input type="text" class="form-control" id="inv_content" 
+					   <input type="text" class="form-control" name="inv_content" 
 					   	   value="${inv.content}">
         	</div>
         	<button type="submit" class="btn btn-default">保存</button>
         </form>
       </div>
 	  
+	  <form role="form">
+		<c:forEach var="q" items="${qlist}">
+		<div class="form-group">
+		 <label>${q.q_content}</label>
+         <c:if test="${q.type==1}">
+         <c:forEach var="c" items="${cvlist}">
+         <c:if test="${c.q_id==q.q_id}">
+         <div class="radio">
+             <label>
+                 <input type="radio" name="q${c.q_id}"  value="${c.c_content}" > ${c.c_content}
+             </label>
+         </div>
+         </c:if>
+         </c:forEach>
+         </c:if>
+         <c:if test="${q.type==2}">
+         <c:forEach var="c" items="${cvlist}">
+         <c:if test="${c.q_id==q.q_id}">
+         <div class="checkbox">
+             <label><input type="checkbox" name="q${c.q_id}" value="${c.c_content}">${c.c_content}</label>
+         </div>
+         </c:if>
+         </c:forEach>
+         </c:if>
+         <c:if test="${q.type!=1&&q.type!=2}">
+         <input type="text" class="form-control" name="q${q.q_id}">
+         </c:if>
+         </div>
+         <br>
+		</c:forEach>
 
+
+     </form>
+
+
+	<form role="form" action="EditInvest" method="post">
+	<div class="col-sm-offset-4 col-sm-8">
+	<h3>在下面增加新问题：</h3>
+	</div>
+	<div class="form-group">
+		<input type="hidden" name="opt" value="createQue">
+		<label for="name">问题描述</label>
+        		<input type="text" class="form-control" name="q_content"
+        		value="请输入问题描述">
+        		<br>
+		<label for="name">问题类型</label>
+		<select name="type" class="form-control">
+			<option value=1>单选</option>
+			<option value=2>多选</option>
+			<option value=0>填空</option>
+		</select>
+			<br>
+		<label for="name">选项数(填空题不用选择)</label>
+		<select name="cnum" class="form-control">
+			<option value=1>1</option>
+			<option value=2>2</option>
+			<option value=3>3</option>
+			<option value=4>4</option>
+			<option value=5>5</option>
+		</select>
+		<br>
+			   <div class="col-sm-offset-5 col-sm-7">
+       <button type="submit" class="btn btn-primary">创建问题</button>
+	   </div>
+	</div>
+	</form>
     </div><!-- /.container -->
 
 
