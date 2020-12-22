@@ -26,4 +26,23 @@ public class ChoiceViewDao {
 		}
 		return list;
 	}
+	public List<ChoiceView> queryChoiceViewsByQ_id(int q_id){
+		String sql ="select * from choiceView where question_id=?";
+		List<ChoiceView> list=new ArrayList<ChoiceView>() ;
+		List<Object[]> arrs=SQLHelper.executeQueryByParamsAsList(sql, q_id);
+		for(Object[] arr:arrs) {
+			ChoiceView cv=new ChoiceView();
+			cv.setQ_id(Integer.valueOf(arr[0].toString()));
+			cv.setQ_content(arr[1].toString());
+			cv.setI_id(Integer.valueOf(arr[2].toString()));
+			cv.setType(Integer.valueOf(arr[3].toString()));
+			//如果为填空题，后面两个为Null
+			if(arr[4]!=null)
+				cv.setC_id(Integer.valueOf(arr[4].toString()));
+			if(arr[5]!=null)
+				cv.setC_content(arr[5].toString());
+			list.add(cv);
+		}
+		return list;
+	}
 }

@@ -22,10 +22,19 @@ import entity.Question;
 
 @WebServlet("/EditInvest")
 public class EditInvestServlet extends HttpServlet {
-
+	int q_id;
+	Question que;
+	String q_content;
+	Enumeration<String> paras;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//中文处理
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");
+		if(request.getParameter("q_id")!=null) {
+			q_id=Integer.valueOf(request.getParameter("q_id"));
+		}
+		if(request.getParameter("q_content")!=null) {
+			q_content=request.getParameter("q_content").toString();
+		}
 		Invest inv=(Invest)request.getSession().getAttribute("inv");		
 		String opt=request.getParameter("opt");
 		InvestDao invdao=new InvestDao();
@@ -56,7 +65,6 @@ public class EditInvestServlet extends HttpServlet {
 			break;
 		case "createQue":
 			//在数据库新建问题并转到选项编辑页面
-			String q_content=request.getParameter("q_content");
 			int type=Integer.valueOf(request.getParameter("type"));
 			int cnum=Integer.valueOf(request.getParameter("cnum"));
 			qdao.addQuestion(q_content, inv.getId(), type);
@@ -67,17 +75,38 @@ public class EditInvestServlet extends HttpServlet {
 				return;
 			}
 			request.getSession().setAttribute("cnum", cnum);
-			Question que=new Question(qdao.getLastQuestion_id(), q_content, inv.getId(), type);
+			que=new Question(qdao.getLastQuestion_id(), q_content, inv.getId(), type);
 			request.getSession().setAttribute("que", que);
 			response.sendRedirect("createChoice.jsp");
 			break;
 		case "createChoice":
-			int q_id=Integer.valueOf(request.getParameter("q_id"));
-			Enumeration<String> paras=request.getParameterNames();			
+			paras=request.getParameterNames();			
 			while(paras.hasMoreElements()) {
 				String ps=paras.nextElement().toString();
 				if(ps.startsWith("c_")) {
 					cdao.addChoice(request.getParameter(ps), q_id);
+				}
+			}
+			response.sendRedirect("EditInvest?opt=queryAll");
+			break;
+		case "deleteQuestion":
+			qdao.deleteQueByQ_id(q_id);
+			response.sendRedirect("EditInvest?opt=queryAll");
+			break;
+		case "editQuestion":
+			que=qdao.getQuestionByQ_id(q_id);
+			request.getSession().setAttribute("que", que);
+			request.getSession().setAttribute("clist", cvdao.queryChoiceViewsByQ_id(q_id));
+			response.sendRedirect("editQuestion.jsp");
+			break;
+		case "update":
+			//修改q和c的内容
+			qdao.updateQ_content(q_content, q_id);
+			paras=request.getParameterNames();			
+			while(paras.hasMoreElements()) {
+				String ps=paras.nextElement().toString();
+				if(ps.startsWith("c_")) {
+					cdao.updateC_content(request.getParameter(ps).toString(), Integer.valueOf(ps.substring(2)));
 				}
 			}
 			response.sendRedirect("EditInvest?opt=queryAll");

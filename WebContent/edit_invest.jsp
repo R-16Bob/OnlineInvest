@@ -94,7 +94,11 @@
          <input type="text" class="form-control" name="q${q.q_id}">
          </c:if>
          </div>
-         <br>
+         <div class="btn-group">
+	<a class="btn btn-warning" href="EditInvest?opt=editQuestion&q_id=${q.q_id}" role="button" >编辑</a>
+<a class="btn btn-danger" href="EditInvest?opt=deleteQuestion&q_id=${q.q_id}" role="button" >删除</a>
+</div>
+         <br>         <br>
 		</c:forEach>
 
 
