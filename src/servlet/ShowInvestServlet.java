@@ -22,6 +22,7 @@ public class ShowInvestServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int invest_id=Integer.valueOf(request.getParameter("invest_id").toString());
+		String opt=request.getParameter("opt").toString();
 		InvestDao invdao=new InvestDao();
 		QuestionDao qdao=new QuestionDao();
 		ChoiceViewDao cvdao=new ChoiceViewDao();
@@ -31,7 +32,17 @@ public class ShowInvestServlet extends HttpServlet {
 		request.getSession().setAttribute("inv", inv);
 		request.getSession().setAttribute("qlist", qlist);
 		request.getSession().setAttribute("cvlist", cvlist);
-		response.sendRedirect("showInvest.jsp");
+		switch (opt) {
+		case "show":
+			response.sendRedirect("showInvest.jsp");
+			break;
+		case "download":
+			response.sendRedirect("downloadInvest.jsp");
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

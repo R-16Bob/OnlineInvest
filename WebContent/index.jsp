@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a  href="create_invest.jsp">新建问卷 <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a  href="create_invest.jsp" target="_blank">新建问卷 <span class="sr-only">(current)</span></a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -85,7 +85,7 @@
 					 <a class="btn btn-primary" href="Invest?opt=edit&invest_id=${inv.id}" role="button" >设计</a>
 				  </td>
 				  <td>
-				  	<a class="btn btn-success" href="ShowInvest?invest_id=${inv.id}" role="button" >发布</a>
+				  	<a class="btn btn-success" href="Invest?opt=share&invest_id=${inv.id}" role="button" target="_blank" >发布</a>
 				  </td>
 				  <td>
 					 <a class="btn btn-danger" href="Invest?opt=delete&invest_id=${inv.id}" role="button" >删除</a>
@@ -97,7 +97,7 @@
 				                  <ul class="dropdown-menu">
 				                    <li><a href="#">统计分析</a></li>
 									<li><a href="#">下载分析报告</a></li>
-				                    <li><a href="#">下载问卷</a></li>
+				                    <li><a href="ShowInvest?opt=download&invest_id=${inv.id}">下载问卷</a></li>
 				                    <li><a href="#">导出数据</a></li>				                    
 				                  </ul>
 				                </li>
