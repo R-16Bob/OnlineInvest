@@ -49,7 +49,7 @@ public class StatisticDao {
 						String[] atext=a.getA_content().split("\\|");
 						for(int i=0;i<atext.length;i++) {
 							for(int j=0;j<contents.length;j++) {
-								System.out.println(atext[i]+"比较"+contents[j]);
+								//System.out.println(atext[i]+"比较"+contents[j]);
 								if(atext[i].equals(contents[j])) {
 									amount[j]+=1;
 								}

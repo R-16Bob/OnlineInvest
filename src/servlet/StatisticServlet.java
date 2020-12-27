@@ -30,14 +30,19 @@ public class StatisticServlet extends HttpServlet {
 		InvestDao idao=new InvestDao();
 		request.getSession().setAttribute("statistics", sdao.getResult(invest_id));
 		request.getSession().setAttribute("inv", idao.queryInvestByInv_id(invest_id));
+		if(sdao.getStatisticViewsByI_id(invest_id).size()==0) {
+			request.getSession().setAttribute("message", "该问卷还没有被填写过，无法统计");
+			response.sendRedirect("message.jsp");
+			return;
+		}
 		switch (opt) {
 		case "show":
 			//重定向
 			response.sendRedirect("statistic.jsp");
-			break;
+			return;
 		case "download":
 			response.sendRedirect("downloadStatistic.jsp");
-			break;
+			return;
 		default:
 			break;
 		}

@@ -24,10 +24,14 @@ public class Statistic {
 		this.contents = contents;
 		this.amount = amount;
 		this.cnum = cnum;
+		this.percent=new String[contents.length];
+		for(int i=0;i<percent.length;i++) {
+			percent[i]="0";
+		}
 	}
 
 	public void calculatePercent() {
-		percent=new String[contents.length];
+		
 		for(int i=0;i<percent.length;i++) {
 			// 创建一个数值格式化对象   
 			NumberFormat numberFormat = NumberFormat.getInstance();   
