@@ -95,10 +95,10 @@
 				<li class="dropdown">
 				                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分析&下载 <span class="caret"></span></a>
 				                  <ul class="dropdown-menu">
-				                    <li><a href="#">统计分析</a></li>
-									<li><a href="#">下载分析报告</a></li>
+				                    <li><a href="Statistic?opt=show&invest_id=${inv.id}" target="_blank">统计分析</a></li>
+									<li><a href="Statistic?opt=download&invest_id=${inv.id}">下载分析报告</a></li>
 				                    <li><a href="ShowInvest?opt=download&invest_id=${inv.id}">下载问卷</a></li>
-				                    <li><a href="#">导出数据</a></li>				                    
+				                    <li><a href="DownLoad?filename=data${inv.id}.xls&inv_id=${inv.id}">导出数据</a></li>				                    
 				                  </ul>
 				                </li>
 								 </ul>
