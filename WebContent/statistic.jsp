@@ -58,6 +58,45 @@
        </table>
      </div>
 	 <br />
+	 <div id="chart${sta.question_id}" style="width: 600px;height:400px;"></div>
+	<script type="text/javascript">
+	    // 基于准备好的dom，初始化echarts实例
+	    var q_id=${sta.question_id};
+	    var title='${sta.q_content}';
+	    var myChart = echarts.init(document.getElementById('chart'.concat(q_id)));	
+	    var arr= new Array;
+	    var index=0;
+		<c:forEach var="count" begin="0" end="${sta.cnum-1}">
+		arr[index++]=${sta.amount[count]};
+		</c:forEach>
+	    // 指定图表的配置项和数据
+	    var option = {
+	        title: {
+	            text: title
+	        },
+	        tooltip: {},
+			toolbox: {
+			                feature: {			   			                 
+			                    saveAsImage: {}
+			                }
+			            },
+	        xAxis: {
+	            data: [
+	            	<c:forEach var="count" begin="0" end="${sta.cnum-1}">
+	            	"${sta.contents[count]}",
+	            	</c:forEach>
+	            ]
+	        },
+	        yAxis: {},
+	        series: [{
+	            name: '人数',
+	            type: 'bar',
+	            data: arr
+	        }]
+	    };	 
+	    // 使用刚指定的配置项和数据显示图表。
+	    myChart.setOption(option);
+	</script>
 	 </c:if>
 	 <c:if test="${sta.type!=1&&sta.type!=2}">
 	 <div class="table-responsive">
