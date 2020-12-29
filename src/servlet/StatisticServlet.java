@@ -43,10 +43,7 @@ public class StatisticServlet extends HttpServlet {
 		case "download":
 			response.sendRedirect("downloadStatistic.jsp");
 			return;
-		default:
-			break;
-		}
-		
+		}	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

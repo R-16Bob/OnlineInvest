@@ -30,8 +30,7 @@ public class Statistic {
 		}
 	}
 
-	public void calculatePercent() {
-		
+	public void calculatePercent() {		
 		for(int i=0;i<percent.length;i++) {
 			// 创建一个数值格式化对象   
 			NumberFormat numberFormat = NumberFormat.getInstance();   
@@ -41,7 +40,6 @@ public class Statistic {
 			percent[i]=result;
 			//System.out.println("百分比为:" + result + "%");  		
 		}
-
 	}
 	
 	

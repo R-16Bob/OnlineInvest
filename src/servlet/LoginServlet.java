@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
 					if(pwd.equals(u.getPwd())) {
 						//登录成功
 						request.getSession().setAttribute("uname", uname);
+						//设置session属性user_id
 						setId(uname, request);
 						request.getSession().removeAttribute("error");
 						response.sendRedirect("Invest?opt=queryAll");

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>发布问卷</title>
+    <title>分享问卷</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>发布</h1>
+        <h1>分享</h1>
         <h4>请分享以下问卷链接：</h4>
 		<input type="text" value="http://localhost:8080/OnlineInvest/ShowInvest?invest_id=${invest.id}">
 		<a class="btn btn-success" href="ShowInvest?opt=show&invest_id=${invest.id}" role="button" target="_blank">打开</a>

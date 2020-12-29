@@ -60,10 +60,11 @@
          </div>
          <br>
 		</c:forEach>
-
+		<c:if test="${inv.status==2}">
 	   <div class="col-sm-offset-5 col-sm-7">
        <button type="submit" class="btn btn-primary">提交</button>
 	   </div>
+	   </c:if>
      </form>
 
     </div>

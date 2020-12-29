@@ -63,6 +63,7 @@
 					   	   value="${inv.content}">
         	</div>
         	<button type="submit" class="btn btn-default">保存</button>
+        	 <a class="btn btn-primary" href="ShowInvest?opt=show&invest_id=${inv.id}" role="button" target="_blank" >预览</a>
         </form>
       </div>
 	  
