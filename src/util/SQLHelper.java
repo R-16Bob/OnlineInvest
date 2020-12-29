@@ -20,17 +20,7 @@ public class SQLHelper {
 			e.printStackTrace();
 		}
 	}
-	public static ResultSet executeQuery(String sql) {
-		ResultSet rs=null;
-		try {
-			conn = DriverManager.getConnection(url, user, pwd);
-			Statement cmd=conn.createStatement();
-			rs=cmd.executeQuery(sql);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return rs;
-	}
+	
 	public static void closeConnection() {
 		try {
 			if(conn!=null && !conn.isClosed())
