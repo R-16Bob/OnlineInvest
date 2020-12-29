@@ -18,9 +18,9 @@
     <title>我的问卷</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="https://v3.bootcss.com/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
   </head>
 
   <body>
@@ -81,12 +81,26 @@
 				  <td>${inv.id}</td>
 				  <td>${inv.title}</td>
 				  <td>${inv.created}</td>
-				  <td>
-					 <a class="btn btn-primary" href="Invest?opt=edit&invest_id=${inv.id}" role="button" >设计</a>
+				  <c:if test="${inv.status==2}">
+				  <td>				  
+					 <a class="btn btn-primary" href="#" role="button" disabled="disabled">设计</a>
 				  </td>
-				  <td>
-				  	<a class="btn btn-success" href="Invest?opt=share&invest_id=${inv.id}" role="button" target="_blank" >发布</a>
+				  </c:if>
+				  <c:if test="${inv.status!=2}">
+				  <td>				  
+					 <a class="btn btn-primary" href="Invest?opt=edit&invest_id=${inv.id}" role="button" target="_blank" >设计</a>
 				  </td>
+				  </c:if>
+				  <c:if test="${inv.status==1}">
+				  <td>
+				  	<a class="btn btn-success" href="Invest?opt=submit&invest_id=${inv.id}" role="button"  >发布</a>
+				  </td>
+				  </c:if>
+				  <c:if test="${inv.status==2}">
+				  <td>
+				  	<a class="btn btn-success" href="Invest?opt=share&invest_id=${inv.id}" role="button" target="_blank" >分享</a>
+				  </td>
+				  </c:if>
 				  <td>
 					 <a class="btn btn-danger" href="Invest?opt=delete&invest_id=${inv.id}" role="button" >删除</a>
 				  </td>

@@ -6,16 +6,16 @@ public class Invest {
 	private int id;
 	private String title;
 	private String content;
-	private int state;
+	private int status;
 	private int user_id;
 	private String created;
 	public Invest() {
 	} 
-	public Invest(int id, String title, String content, int state, int user_id, String created) {
+	public Invest(int id, String title, String content, int status, int user_id, String created) {
 		this.id = id;
 		this.title = title;
 		this.content = content;
-		this.state = state;
+		this.status = status;
 		this.user_id = user_id;
 		this.created = created;
 	}
@@ -37,11 +37,11 @@ public class Invest {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getState() {
-		return state;
+	public int getStatus() {
+		return status;
 	}
-	public void setState(int state) {
-		this.state = state;
+	public void setState(int status) {
+		this.status = status;
 	}
 	public int getUser_id() {
 		return user_id;
@@ -57,7 +57,7 @@ public class Invest {
 	}
 	@Override
 	public String toString() {
-		return "id=" + id + ", title=" + title + ", content=" + content + ", state=" + state + ", user_id="
+		return "id=" + id + ", title=" + title + ", content=" + content + ", status=" + status + ", user_id="
 				+ user_id + ", created=" + created + "]";
 	}  
 	

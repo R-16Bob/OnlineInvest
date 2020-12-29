@@ -14,10 +14,10 @@
     <title>问卷设计</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="https://v3.bootcss.com/examples/starter-template/starter-template.css" rel="stylesheet">
+    <link href="css/starter-template.css" rel="stylesheet">
 
   </head>
 

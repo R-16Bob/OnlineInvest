@@ -11,6 +11,11 @@ public class InvestDao {
 		String sql="insert into invest(title,content,user_id) values(?,?,?)";
 		return SQLHelper.executeUpdateByParams(sql, title,content,user_id);
 	}
+	//设置问卷状态
+	public int setStatus(int inv_id,int status) {
+		String sql="update invest set status=? where id=?";
+		return SQLHelper.executeUpdateByParams(sql, status,inv_id);
+	}
 	//获得invest表末尾的问卷id
 	public int getLastInvest_id(){
 		String sql="select * from invest";

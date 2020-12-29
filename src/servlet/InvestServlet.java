@@ -39,6 +39,11 @@ public class InvestServlet extends HttpServlet {
 		case "share":
 			request.getSession().setAttribute("invest", investDao.queryInvestByInv_id(invest_id));
 			response.sendRedirect("share.jsp");
+			break;
+		case "submit":
+			//发布问卷
+			investDao.setStatus(invest_id, 2);
+			response.sendRedirect("Invest?opt=queryAll");
 		}
 	}
 
