@@ -14,25 +14,27 @@ import dao.ChoiceDao;
 import dao.InvestDao;
 import dao.QuestionDao;
 public class ExcelReader {
-	public boolean read(String fileName,int user_id) throws EncryptedDocumentException, IOException{
-		if(fileName==null) return false;
+	public int read(String fileName,int user_id) throws EncryptedDocumentException, IOException{
+		if(fileName==null) return 0;
 		InvestDao investDao=new InvestDao();
 		ChoiceDao choiceDao=new ChoiceDao();
 		QuestionDao questionDao=new QuestionDao();
 		File xlsFile = new File(fileName);
-		if(!xlsFile.exists()) return false;	
+		if(!xlsFile.exists()) return 0;	
 		//工作表
 		Workbook workbook=WorkbookFactory.create(xlsFile);
 		//表个数
 		int numberOfSheets = workbook.getNumberOfSheets();
 		//System.out.println(numberOfSheets);
-		if(numberOfSheets<=0) return false;
+		if(numberOfSheets<=0) return 0;
 		//只处理一个表，不需要遍历
 		Sheet sheet=workbook.getSheetAt(0);
 		//行数
 		int rowNumbers=sheet.getLastRowNum()+1;
 		//读数据，先读第一行的标题和描述
 		Row r1=sheet.getRow(0);
+		if(r1==null)
+			return 0;
 		String title=r1.getCell(0).toString();
 		String content=r1.getCell(1).toString();
 		//插入invest
@@ -42,8 +44,9 @@ public class ExcelReader {
 			Row r=sheet.getRow(row);
 			int colNum=r.getPhysicalNumberOfCells();  //不为空的列数
 			String q_content=r.getCell(0).toString();
+			//判断第二列内容是否是数字
 			if(!r.getCell(1).toString().matches("^\\d+(\\.\\d+)?"))
-				return false;
+				return 1;
 			int type=Double.valueOf(r.getCell(1).toString()).intValue();
 			//插入question
 			questionDao.addQuestion(r.getCell(0).toString(), investDao.getLastInvest_id(), type);
@@ -55,6 +58,6 @@ public class ExcelReader {
 				//其他type默认为填空题
 			}
 		}
-		return true;
+		return 2;
 	}
 }

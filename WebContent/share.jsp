@@ -51,7 +51,7 @@
       <div class="starter-template">
         <h1>分享</h1>
         <h4>请分享以下问卷链接：</h4>
-		<input type="text" value="http://localhost:8080/OnlineInvest/ShowInvest?invest_id=${invest.id}">
+		<input type="text" value="http://localhost:8080/OnlineInvest/ShowInvest?opt=show&invest_id=${invest.id}">
 		<a class="btn btn-success" href="ShowInvest?opt=show&invest_id=${invest.id}" role="button" target="_blank">打开</a>
       </div>
 

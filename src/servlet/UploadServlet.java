@@ -70,8 +70,7 @@ public class UploadServlet extends HttpServlet {
 
         // 构造临时路径来存储上传的文件
         String uploadPath = "D:\\invest" + File.separator + UPLOAD_DIRECTORY;
-       
-         
+          
         // 如果目录不存在则创建
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
@@ -113,9 +112,10 @@ public class UploadServlet extends HttpServlet {
 		InvestDao investDao =new InvestDao();
 		//需要文件名和user_id
 		int id=Integer.valueOf(request.getSession().getAttribute("user_id").toString());
-		if(!er.read(filePath, id)) {
+		int readresult=er.read(filePath, id);
+		if(readresult==1||readresult==0) {
 			//创建问卷失败，删除问卷,只有上传成功才会创建问卷，才能删除
-			if(up_success) {
+			if(up_success&&readresult==1) {
 				investDao.deleteInvestById(investDao.getLastInvest_id());
 			}
 			request.setAttribute("message", "导入问卷失败，请检查文件格式");
